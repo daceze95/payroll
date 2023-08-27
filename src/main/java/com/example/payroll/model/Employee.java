@@ -1,15 +1,13 @@
 package com.example.payroll.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -32,17 +30,19 @@ public class Employee {
     @Column(nullable = false)
     private LocalDate birthDate;
 
-    @Column(nullable = false)
+    @CreatedDate
     private LocalDate joinDate;
 
 
     /*Assigned by Admin*/
     //An Employee can be in one dept.
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
 
     //An Employee can only exist in one category
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "employee_category_id")
     private EmployeeCategory employeeCategory;

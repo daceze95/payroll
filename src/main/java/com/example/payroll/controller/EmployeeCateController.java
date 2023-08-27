@@ -3,6 +3,8 @@ package com.example.payroll.controller;
 import com.example.payroll.model.EmployeeCategory;
 import com.example.payroll.service.EmployeeCategoryService;
 import com.example.payroll.service.EmployeeService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,23 +21,26 @@ public class EmployeeCateController {
     }
 
     @PostMapping
-    public EmployeeCategory addEmployeeCategory(@RequestBody EmployeeCategory d) {
-        return employeeCategoryService.addEmployeeCategory(d);
+    public ResponseEntity<EmployeeCategory> addEmployeeCategory(@RequestBody EmployeeCategory d) {
+        EmployeeCategory res = employeeCategoryService.addEmployeeCategory(d);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<EmployeeCategory> getEmployeeCategories() {
-
-        return employeeCategoryService.getEmployeeCategories();
+    public ResponseEntity<List<EmployeeCategory>> getEmployeeCategories() {
+        List<EmployeeCategory> res = employeeCategoryService.getEmployeeCategories();
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @PutMapping("/{categoryId}")
-    public EmployeeCategory updateEmployeeCategoryById(@RequestBody EmployeeCategory e) {
-        return employeeCategoryService.updateEmployeeCategoryById(e);
+    public ResponseEntity<EmployeeCategory> updateEmployeeCategoryById(@RequestBody EmployeeCategory e) {
+        EmployeeCategory res = employeeCategoryService.updateEmployeeCategoryById(e);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 
     @GetMapping("/{employeeId}")
-    public EmployeeCategory getEmployeeCategoryById(@PathVariable("employeeId") Integer id) {
-        return employeeCategoryService.getEmployeeCategoryById(id);
+    public ResponseEntity<EmployeeCategory> getEmployeeCategoryById(@PathVariable("employeeId") Integer id) {
+        EmployeeCategory res = employeeCategoryService.getEmployeeCategoryById(id);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 }

@@ -2,23 +2,18 @@ package com.example.payroll.model;
 
 import com.example.payroll.model.constant.EmployeeType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "employee_category")
 public class EmployeeCategory {
     @Id
-//    @GeneratedValue
-    @Column(unique = true)
+    @GeneratedValue
     private Integer id;
 
 //    @Enumerated(EnumType.STRING)

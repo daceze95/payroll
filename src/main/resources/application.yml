@@ -1,15 +1,13 @@
 server:
-  port: 8080
-
+  port: 8080 #specify your port number
 spring:
-  datasource:
-    url: "jdbc:sqlserver://ISW-230522-1310\\SQLEXPRESS;encrypt=false;integratedSecurity=true;databaseName=payroll"
-    driver-class-name: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+  dataSource:
+    #    url: jdbc:postgresql://localhost:{db portNumber}/{databaseName}
+    url: jdbc:postgresql://localhost:5436/mac
+    driver-class-name: org.postgresql.Driver
+
   jpa:
-    properties:
-      hibernate:
-        dialect: "org.hibernate.dialect.SQLServerDialect"
     hibernate:
-      ddl-auto: "create"
-
-
+      ddl-auto: update #update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

@@ -1,4 +1,4 @@
-package com.example.payroll.implementation;
+package com.example.payroll.service.implementation;
 
 import com.example.payroll.model.EmployeeCategory;
 import com.example.payroll.repository.EmployeeCateServiceRepo;

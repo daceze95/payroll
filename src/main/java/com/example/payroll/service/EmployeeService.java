@@ -1,12 +1,13 @@
 package com.example.payroll.service;
 
+import com.example.payroll.dto.EmployeeDTO;
 import com.example.payroll.model.Employee;
 
 import java.util.List;
 
 public interface EmployeeService {
 
-    Employee addEmployee(Employee e);
+    Employee addEmployee(EmployeeDTO e);
 
     List<Employee> getEmployees();
 

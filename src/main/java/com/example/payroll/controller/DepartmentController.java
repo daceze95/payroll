@@ -1,8 +1,11 @@
 package com.example.payroll.controller;
 
+import com.example.payroll.dto.DepartmentDTO;
 import com.example.payroll.model.Department;
 import com.example.payroll.model.Employee;
 import com.example.payroll.service.DepartmentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,31 +21,34 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public Department addDepartment(@RequestBody Department d) {
-
-        return departmentService.addDepartment(d);
+    public ResponseEntity<Department> addDepartment(@RequestBody DepartmentDTO d) {
+        Department res = departmentService.addDepartment(d);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Department> getDepartments() {
-        return departmentService.getDepartments();
+    public ResponseEntity<List<Department>> getDepartments() {
+        List<Department> res = departmentService.getDepartments();
+        return new ResponseEntity<>( res, HttpStatus.OK);
     }
 
     @PutMapping("/{departmentId}")
-    public Department updateDepartmentById(@RequestBody Department d) {
-
-        return departmentService.updateDepartmentById(d);
+    public ResponseEntity<Department> updateDepartmentById(@PathVariable Integer departmentId, @RequestBody DepartmentDTO d) {
+        d.setId(departmentId);
+        Department res = departmentService.updateDepartmentById(d);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 
     @GetMapping("/{departmentId}")
-    public Department getDepartmentById(@PathVariable("departmentId") Integer id) {
+    public ResponseEntity<Department> getDepartmentById(@PathVariable("departmentId") Integer id) {
 
-        return departmentService.getDepartmentById(id);
+        Department res = departmentService.getDepartmentById(id);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 
     @GetMapping("/{departmentId}/employees")
-    public List<Employee> getEmployeesByDepartment(@PathVariable("departmentId") Integer deptId) {
-        return null;
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable("departmentId") Integer deptId) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
